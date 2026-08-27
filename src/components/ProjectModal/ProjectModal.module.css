@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 100;
   padding: 1rem;
 }
 
@@ -86,6 +86,105 @@
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 0.85rem;
   color: #a7f3d0;
-  overflow-x: auto; /* Adiciona barra de rolagem horizontal se o código for longo */
+  overflow-x: auto;
   white-space: pre-wrap;
+}
+
+/* Seção da Galeria */
+.section {
+  margin-bottom: 1.25rem;
+}
+
+.section h3 {
+  font-size: 0.9rem;
+  color: #a1a1aa;
+  margin-bottom: 0.75rem;
+}
+
+.imageGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #27272a;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.img:hover {
+  transform: scale(1.02);
+  border-color: #8b5cf6;
+}
+
+/* Fundo do Zoom (sobrepõe tudo na tela) */
+.lightboxOverlay {
+  position: fixed;
+  inset: 0;
+  /* Fundo preto bem escuro para ocultar o que está atrás */
+  background-color: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Garante que fique estritamente ACIMA do modal original */
+  z-index: 9999;
+  padding: 2rem;
+  cursor: zoom-out;
+}
+
+/* Imagem ampliada */
+.lightboxImage {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  cursor: default;
+}
+
+/* Botão de fechar do Zoom */
+.lightboxCloseBtn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #ffffff;
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.lightboxCloseBtn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.linkBtn {
+  display: block;
+  text-align: center;
+  background-color: #8b5cf6;
+  color: #ffffff;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.linkBtn:hover {
+  background-color: #7c3aed;
 }

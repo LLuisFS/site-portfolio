@@ -7,7 +7,7 @@ export const PROJETOS_MOCK: Projeto[] = [
     descricao: 'API desenvolvida em Python para processamento e consulta de dados públicos com testes automatizados.',
     categoria: 'Programação',
     data: '2026',
-    imagens: ['/next.svg'],
+    imagens: ['/astra pfp.jpg'],
     codigoPreview: 'from fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get("/")\ndef read_root():\n    return {"status": "online"}',
     linkExterno: 'https://github.com'
   },
