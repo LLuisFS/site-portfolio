@@ -1,9 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { createPortal } from 'react-dom';
 import { Projeto } from '@/types/project';
 import styles from './ProjectModal.module.css';
+import { CodePreview } from './CodePreview';
+import { ProjectGallery } from './ProjectGallery';
+import { Lightbox } from './Lightbox';
 
 interface ProjectModalProps {
   projeto: Projeto | null;
@@ -24,8 +26,10 @@ export function ProjectModal({ projeto, onClose }: ProjectModalProps) {
       <div className={styles.overlay} onClick={onClose}>
         <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
           {/* Botão de fechar o modal */}
-          <button className={styles.closeBtn} onClick={onClose}>X</button>
-          
+          <button className={styles.closeBtn} onClick={onClose}>
+            X
+          </button>
+
           {/* Badge com o nome da categoria */}
           <span className={styles.badge}>{projeto.categoria}</span>
 
@@ -39,34 +43,15 @@ export function ProjectModal({ projeto, onClose }: ProjectModalProps) {
           <p className={styles.descricao}>{projeto.descricao}</p>
 
           {/* Bloco de código (caso exista) */}
-          {projeto.codigoPreview && (
-            <div className={styles.codeBlock}>
-              <h3>Preview do Código</h3>
-              <pre>
-                <code>{projeto.codigoPreview}</code>
-              </pre>
-            </div>
-          )}
+          {projeto.codigoPreview && <CodePreview codigo={projeto.codigoPreview} />}
 
           {/* Galeria de imagens (caso exista) */}
           {projeto.imagens && projeto.imagens.length > 0 && (
-            <div className={styles.section}>
-              <h3>Galeria / Previews</h3>
-              <div className={styles.imageGrid}>
-                {projeto.imagens.map((imgUrl, idx) => (
-                  <img
-                    key={idx}
-                    src={imgUrl}
-                    alt={`Preview ${idx + 1} de ${projeto.titulo}`}
-                    className={styles.img}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedImage(imgUrl);
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
+            <ProjectGallery
+              imagens={projeto.imagens}
+              titulo={projeto.titulo}
+              onSelectImage={setSelectedImage}
+            />
           )}
 
           {/* Botão de link externo (caso exista) */}
@@ -84,25 +69,12 @@ export function ProjectModal({ projeto, onClose }: ProjectModalProps) {
       </div>
 
       {/* Modal da imagem em tela cheia (Lightbox) */}
-      {selectedImage && typeof window !== 'undefined' && createPortal(
-        <div
-          className={styles.lightboxOverlay}
-          onClick={() => setSelectedImage(null)}
-        >
-          <button
-            onClick={() => setSelectedImage(null)}
-            className={styles.lightboxCloseBtn}
-          >
-            X
-          </button>
-          <img
-            src={selectedImage}
-            alt={`Preview em tela cheia de ${projeto.titulo}`}
-            className={styles.lightboxImage}
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>,
-        document.body
+      {selectedImage && (
+        <Lightbox
+          imageUrl={selectedImage}
+          titulo={projeto.titulo}
+          onClose={() => setSelectedImage(null)}
+        />
       )}
     </>
   );
