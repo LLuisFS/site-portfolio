@@ -2,13 +2,28 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 0rem;
+    padding: 1rem 0;
     border-bottom: 1px solid #8A00E0;
     margin-bottom: 1rem;
+    width: 100%;
 }
 
 .title {
     color: #8A00E0;
     font-size: 1.8rem;
     font-weight: bold;
+}
+
+@media (max-width: 640px) {
+  .header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    text-align: center;
+    padding: 1rem 0;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+  }
 }
