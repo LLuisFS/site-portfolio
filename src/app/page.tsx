@@ -19,7 +19,7 @@ export default function Home() {
           <article
             key={projeto.id}
             className={styles.card}
-            onClick={() => setSelectedProject(projeto)} // Define o projeto clicado no estado
+            onClick={() => setSelectedProject(projeto)}
           >
             <div className={styles.badge}>{projeto.categoria}</div>
             <h2>{projeto.titulo}</h2>

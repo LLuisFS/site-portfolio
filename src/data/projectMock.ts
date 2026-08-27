@@ -17,7 +17,7 @@ export const PROJETOS_MOCK: Projeto[] = [
     descricao: 'Vetorização e layout completo para identidade visual de marca.',
     categoria: 'Design',
     data: '2025',
-    imagens: ['/globe.svg'],
+    imagens: ['/astra chad.jpg'],
     linkExterno: 'https://behance.net'
   }
 ];

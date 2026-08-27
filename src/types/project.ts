@@ -6,8 +6,8 @@ export interface Projeto {
   descricao: string;
   categoria: CategoriaProjeto;
   data?: string;
-  imagens: string[];       // URLs das imagens/prints
-  svgs?: string[];         // SVGs para artes/vetores
-  codigoPreview?: string;  // Trecho de código para projetos de TI
-  linkExterno?: string;    // GitHub, Behance, Wattpad, Amazon, LinkedIn
+  imagens: string[];
+  svgs?: string[];
+  codigoPreview?: string;
+  linkExterno?: string;
 }

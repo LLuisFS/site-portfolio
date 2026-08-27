@@ -1,6 +1,6 @@
 # Relatório de Arquitetura de Software Front-end
 
-Este documento apresenta a análise técnica detalhada da estrutura atual do projeto **site-portifolio**, desenvolvido com **Next.js (App Router)**, **TypeScript** e **CSS Modules**.
+Este documento apresenta a análise técnica detalhada da estrutura atual do projeto **site-portfolio**, desenvolvido com **Next.js (App Router)**, **TypeScript** e **CSS Modules**.
 
 ---
 
@@ -59,15 +59,15 @@ src/
 
 ### Páginas e Rotas (`src/app/`)
 
-1. **Home / Catálogo (`/`)** — [`src/app/page.tsx`](file:///c:/Users/lfsrl/Documents/site-portifolio/src/app/page.tsx)
+1. **Home / Catálogo (`/`)** — [`src/app/page.tsx`](file:///c:/Users/lfsrl/Documents/site-portfolio/src/app/page.tsx)
    - **Tipo**: Client Component (`'use client'`).
-   - **Responsabilidade**: Renderiza o [Header](file:///c:/Users/lfsrl/Documents/site-portifolio/src/components/layout/header.tsx), mapeia os projetos vindos do [PROJETOS_MOCK](file:///c:/Users/lfsrl/Documents/site-portifolio/src/data/projectMock.ts) em formato de *cards* com categoria, título, descrição e data, e gerencia o estado do modal ativo via `selectedProject`.
+   - **Responsabilidade**: Renderiza o [Header](file:///c:/Users/lfsrl/Documents/site-portfolio/src/components/layout/header.tsx), mapeia os projetos vindos do [PROJETOS_MOCK](file:///c:/Users/lfsrl/Documents/site-portfolio/src/data/projectMock.ts) em formato de *cards* com categoria, título, descrição e data, e gerencia o estado do modal ativo via `selectedProject`.
 
-2. **Sobre Mim (`/about`)** — [`src/app/about/page.tsx`](file:///c:/Users/lfsrl/Documents/site-portifolio/src/app/about/page.tsx)
+2. **Sobre Mim (`/about`)** — [`src/app/about/page.tsx`](file:///c:/Users/lfsrl/Documents/site-portfolio/src/app/about/page.tsx)
    - **Tipo**: Server Component.
    - **Responsabilidade**: Exibe informações sobre o profissional/autor.
 
-3. **Administração (`/admin`)** — [`src/app/admin/page.tsx`](file:///c:/Users/lfsrl/Documents/site-portifolio/src/app/admin/page.tsx)
+3. **Administração (`/admin`)** — [`src/app/admin/page.tsx`](file:///c:/Users/lfsrl/Documents/site-portfolio/src/app/admin/page.tsx)
    - **Tipo**: Server Component.
    - **Responsabilidade**: Rota reservada para o painel administrativo/gestão de projetos.
 
@@ -77,16 +77,16 @@ src/
 
 A estrutura do modal foi projetada seguindo o princípio da **responsabilidade única**, dividindo o modal em subcomponentes coesos:
 
-- **[ProjectModal.tsx](file:///c:/Users/lfsrl/Documents/site-portifolio/src/components/ProjectModal/ProjectModal.tsx)**: Componente orquestrador. Recebe a *prop* `projeto: Projeto | null`. Se `null`, interrompe a renderização (`return null`). Controla a abertura do `Lightbox` e lida com o evento de fechamento.
-- **[CodePreview.tsx](file:///c:/Users/lfsrl/Documents/site-portifolio/src/components/ProjectModal/CodePreview.tsx)**: Renderiza um bloco de código estilizado com `<pre>` e `<code>` quando o projeto possui `codigoPreview`.
-- **[ProjectGallery.tsx](file:///c:/Users/lfsrl/Documents/site-portifolio/src/components/ProjectModal/ProjectGallery.tsx)**: Exibe a lista de imagens em miniaturas clicáveis (`onSelectImage`).
-- **[Lightbox.tsx](file:///c:/Users/lfsrl/Documents/site-portifolio/src/components/ProjectModal/Lightbox.tsx)**: Modal de alta prioridade (`z-index: 9999`) renderizado diretamente no `document.body` via `React.createPortal`, permitindo visualização de imagem em tela cheia com desfoque de fundo.
+- **[ProjectModal.tsx](file:///c:/Users/lfsrl/Documents/site-portfolio/src/components/ProjectModal/ProjectModal.tsx)**: Componente orquestrador. Recebe a *prop* `projeto: Projeto | null`. Se `null`, interrompe a renderização (`return null`). Controla a abertura do `Lightbox` e lida com o evento de fechamento.
+- **[CodePreview.tsx](file:///c:/Users/lfsrl/Documents/site-portfolio/src/components/ProjectModal/CodePreview.tsx)**: Renderiza um bloco de código estilizado com `<pre>` e `<code>` quando o projeto possui `codigoPreview`.
+- **[ProjectGallery.tsx](file:///c:/Users/lfsrl/Documents/site-portfolio/src/components/ProjectModal/ProjectGallery.tsx)**: Exibe a lista de imagens em miniaturas clicáveis (`onSelectImage`).
+- **[Lightbox.tsx](file:///c:/Users/lfsrl/Documents/site-portfolio/src/components/ProjectModal/Lightbox.tsx)**: Modal de alta prioridade (`z-index: 9999`) renderizado diretamente no `document.body` via `React.createPortal`, permitindo visualização de imagem em tela cheia com desfoque de fundo.
 
 ---
 
 ## 4. Modelos de Dados e Gerenciamento de Estado
 
-### Definição dos Tipos TypeScript ([`src/types/project.ts`](file:///c:/Users/lfsrl/Documents/site-portifolio/src/types/project.ts))
+### Definição dos Tipos TypeScript ([`src/types/project.ts`](file:///c:/Users/lfsrl/Documents/site-portfolio/src/types/project.ts))
 
 ```typescript
 export type CategoriaProjeto = 'Programação' | 'Design' | 'Literatura' | 'Outros';
@@ -106,14 +106,14 @@ export interface Projeto {
 
 ### Arquitetura de Estado Local e Modais
 
-1. **Estado Principal na Home** ([`src/app/page.tsx`](file:///c:/Users/lfsrl/Documents/site-portifolio/src/app/page.tsx)):
+1. **Estado Principal na Home** ([`src/app/page.tsx`](file:///c:/Users/lfsrl/Documents/site-portfolio/src/app/page.tsx)):
    ```tsx
    const [selectedProject, setSelectedProject] = useState<Projeto | null>(null);
    ```
    - Ao clicar em um `<article className={styles.card}>`, o projeto é atribuído ao estado.
    - O `ProjectModal` é renderizado declarativamente condicionado à existência de `selectedProject`.
 
-2. **Estado Interno do Modal & Resets** ([`src/components/ProjectModal/ProjectModal.tsx`](file:///c:/Users/lfsrl/Documents/site-portifolio/src/components/ProjectModal/ProjectModal.tsx)):
+2. **Estado Interno do Modal & Resets** ([`src/components/ProjectModal/ProjectModal.tsx`](file:///c:/Users/lfsrl/Documents/site-portfolio/src/components/ProjectModal/ProjectModal.tsx)):
    ```tsx
    const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
@@ -123,7 +123,7 @@ export interface Projeto {
    ```
    - O `useEffect` garante que o estado da imagem no Lightbox seja zerado sempre que um novo projeto for selecionado.
 
-3. **Portal do Lightbox** ([`src/components/ProjectModal/Lightbox.tsx`](file:///c:/Users/lfsrl/Documents/site-portifolio/src/components/ProjectModal/Lightbox.tsx)):
+3. **Portal do Lightbox** ([`src/components/ProjectModal/Lightbox.tsx`](file:///c:/Users/lfsrl/Documents/site-portfolio/src/components/ProjectModal/Lightbox.tsx)):
    - Utiliza `createPortal(..., document.body)` para desvincular o DOM do Lightbox do fluxo hierárquico da página e evitar problemas de empilhamento de z-index ou estouro de *overflow container*.
    - Utiliza `e.stopPropagation()` no elemento da imagem para evitar que o clique na imagem feche o Lightbox ao clicar na área do conteúdo.
 
@@ -134,7 +134,7 @@ export interface Projeto {
 ### 1. Escopo com CSS Modules
 Todos os componentes utilizam a estratégia de **CSS Modules** (`[nome].module.css`), isolando completamente os seletores CSS por componente e evitando colisão de escopo global.
 
-### 2. Estilos Globais ([`src/app/globals.css`](file:///c:/Users/lfsrl/Documents/site-portifolio/src/app/globals.css))
+### 2. Estilos Globais ([`src/app/globals.css`](file:///c:/Users/lfsrl/Documents/site-portfolio/src/app/globals.css))
 - Define o reset de box-sizing (`box-sizing: border-box; margin: 0; padding: 0;`).
 - Aplica o tema escuro base no `body` (`background-color: #1d191f`, `color: #f1f1f1`) e define a largura máxima centralizada do layout (`max-width: 1100px; margin: 0 auto;`).
 

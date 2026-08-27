@@ -5,8 +5,113 @@
   width: 100%;
 }
 
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+.title {
+  font-size: 2rem;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  color: #a1a1aa;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+.successAlert {
+  background-color: rgba(167, 243, 208, 0.1);
+  border: 1px solid #10b981;
+  color: #a7f3d0;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.form {
+  background-color: #18181b;
+  border: 1px solid #27272a;
+  border-radius: 12px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field label {
+  font-size: 0.85rem;
+  color: #d4d4d8;
+  font-weight: 500;
+}
+
+.field input,
+.field select,
+.field textarea {
+  background-color: #09090b;
+  border: 1px solid #27272a;
+  border-radius: 6px;
+  padding: 0.65rem 0.85rem;
+  color: #ffffff;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: #8b5cf6;
+}
+
+.codeTextarea {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: #a7f3d0 !important;
+}
+
+.submitBtn {
+  background-color: #8b5cf6;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.85rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.submitBtn:hover {
+  background-color: #7c3aed;
+}
+
 @media (max-width: 640px) {
   .main {
     padding: 1.5rem 0.5rem;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .form {
+    padding: 1.25rem 1rem;
   }
 }

@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Portifólio DRX",
+  title: "Portfólio DRX",
   description: "Criado por Luis F. Soares | DRX",
 };
 
