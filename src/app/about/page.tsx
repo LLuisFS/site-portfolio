@@ -65,7 +65,6 @@ export default function AboutPage() {
                 <span>CorelDRAW</span>
                 <span>Photoshop</span>
                 <span>Vetorização</span>
-                <span>UI/UX</span>
                 <span>E tudo o que tem direito</span>
               </div>
             </div>
