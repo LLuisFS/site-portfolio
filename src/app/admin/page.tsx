@@ -6,7 +6,6 @@ import styles from './page.module.css';
 import { CategoriaProjeto, Projeto } from '@/types/project';
 
 export default function AdminPage() {
-  // 1. ESTADOS DO FORMULÁRIO
   const [titulo, setTitulo] = useState('');
   const [categoria, setCategoria] = useState<CategoriaProjeto>('Programação');
   const [descricao, setDescricao] = useState('');
@@ -16,7 +15,6 @@ export default function AdminPage() {
   const [linkExterno, setLinkExterno] = useState('');
   const [mensagensSucesso, setMensagensSucesso] = useState('');
 
-  // 2. FUNÇÃO DE ENVIO DO FORMULÁRIO
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -39,7 +37,6 @@ export default function AdminPage() {
     console.log('Projeto cadastrado:', novoProjeto);
     setMensagensSucesso('Projeto cadastrado com sucesso!');
 
-    // Resetando os campos
     setTitulo('');
     setCategoria('Programação');
     setDescricao('');
@@ -51,7 +48,6 @@ export default function AdminPage() {
     setTimeout(() => setMensagensSucesso(''), 4000);
   };
 
-  // 3. ESTRUTURA VISUAL (JSX)
   return (
     <main className={styles.main}>
       <Header />
