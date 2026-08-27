@@ -1,0 +1,9 @@
+.links,
+a:visited,
+a:active {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    text-decoration: none;
+    color: inherit;
+}
